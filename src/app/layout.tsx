@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Nunito } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import { ThemeProvider } from "next-themes";
 
 const font = Nunito({
   subsets: ["latin"],
@@ -21,9 +22,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={cn(font.className, "antialiased")}>
-        <main className="min-h-[calc(100vh-160px)] w-full">{children}</main>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={cn(font.className, "antialiased")}
+    >
+      <body>
+        <ThemeProvider
+          attribute={"class"}
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <main className="min-h-[calc(100vh-160px)] w-full">{children}</main>
+        </ThemeProvider>
       </body>
     </html>
   );
