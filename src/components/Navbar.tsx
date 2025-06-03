@@ -2,9 +2,8 @@
 
 import Link from "next/link";
 import React from "react";
-
-import SearchField from "./SearchField";
 import UserButton from "./UserButton";
+import SearchField from "./SearchField";
 
 const Navbar = () => {
   return (
