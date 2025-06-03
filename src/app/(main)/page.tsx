@@ -1,10 +1,9 @@
-import { Button } from "@/components/ui/button";
-import React from "react";
-
 const Home = () => {
   return (
-    <div className="">
-      <Button>click</Button>
+    <div className="h-[200vh] w-full bg-red-400">
+      <div className="flex h-full w-full items-center justify-center">
+        <h1 className="text-5xl font-bold">Home</h1>
+      </div>
     </div>
   );
 };
