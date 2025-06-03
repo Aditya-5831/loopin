@@ -23,9 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cn(font.className, "antialiased")}>
-        <main className="min-h-[calc(100vh-160px)] w-full bg-gray-50">
-          {children}
-        </main>
+        <main className="min-h-[calc(100vh-160px)] w-full">{children}</main>
       </body>
     </html>
   );
