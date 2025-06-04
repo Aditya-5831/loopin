@@ -4,6 +4,7 @@ import { ThemeProvider } from "next-themes";
 import { Inter } from "next/font/google";
 import { Toaster } from "sonner";
 import "./globals.css";
+import ReactQueryProvider from "@/providers/ReactQueryProvider";
 
 const font = Inter({
   subsets: ["latin"],
@@ -29,14 +30,16 @@ export default function RootLayout({
         className={cn(font.className, "bg-gray-50 antialiased dark:bg-black")}
       >
         <Toaster position="top-center" richColors />
-        <ThemeProvider
-          attribute={"class"}
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <main className="min-h-[calc(100vh-160px)] w-full">{children}</main>
-        </ThemeProvider>
+        <ReactQueryProvider>
+          <ThemeProvider
+            attribute={"class"}
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <main className="min-h-[calc(100vh-160px)] w-full">{children}</main>
+          </ThemeProvider>
+        </ReactQueryProvider>
       </body>
     </html>
   );
