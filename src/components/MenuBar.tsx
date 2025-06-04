@@ -13,7 +13,7 @@ const MenuBar = ({ className }: MenuBarProps) => {
     <div className={cn("", className)}>
       <Button
         variant="ghost"
-        className="flex items-center justify-start gap-3"
+        className="flex items-center justify-start gap-3 text-black"
         title="Home"
         asChild
       >
@@ -24,7 +24,7 @@ const MenuBar = ({ className }: MenuBarProps) => {
       </Button>
       <Button
         variant="ghost"
-        className="flex items-center justify-start gap-3"
+        className="flex items-center justify-start gap-3 text-black"
         title="Notifications"
         asChild
       >
@@ -35,7 +35,7 @@ const MenuBar = ({ className }: MenuBarProps) => {
       </Button>
       <Button
         variant="ghost"
-        className="flex items-center justify-start gap-3"
+        className="flex items-center justify-start gap-3 text-black"
         title="Messages"
         asChild
       >
@@ -46,7 +46,7 @@ const MenuBar = ({ className }: MenuBarProps) => {
       </Button>
       <Button
         variant="ghost"
-        className="flex items-center justify-start gap-3"
+        className="flex items-center justify-start gap-3 text-black"
         title="Bookmarks"
         asChild
       >

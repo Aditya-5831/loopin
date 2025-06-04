@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 const SignUp = () => {
   return (
-    <div className="flex h-full w-full items-center justify-center py-20">
+    <div className="flex h-full w-full items-center justify-center py-14">
       <SignUpForm />
     </div>
   );
