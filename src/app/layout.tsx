@@ -3,6 +3,7 @@ import { Nunito } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "next-themes";
+import { Toaster } from "sonner";
 
 const font = Nunito({
   subsets: ["latin"],
@@ -28,6 +29,7 @@ export default function RootLayout({
       className={cn(font.className, "antialiased")}
     >
       <body>
+        <Toaster position="top-center" richColors />
         <ThemeProvider
           attribute={"class"}
           defaultTheme="system"
