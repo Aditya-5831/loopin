@@ -1,8 +1,22 @@
-const Home = () => {
+import db from "@/lib/prisma";
+import { PostDataInclude } from "@/lib/types";
+import PostEditor from "@/modules/posts/editor/PostEditor";
+import Post from "@/modules/posts/Post";
+
+const Home = async () => {
+  const posts = await db.post.findMany({
+    include: PostDataInclude,
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
   return (
-    <div className="h-[200vh] w-full bg-red-400">
-      <div className="flex h-full w-full items-center justify-center">
-        <h1 className="text-5xl font-bold">Home</h1>
+    <div className="w-full min-w-0">
+      <div className="w-full min-w-0 space-y-5">
+        <PostEditor />
+        {posts.map((post) => (
+          <Post key={post.id} post={post} />
+        ))}
       </div>
     </div>
   );
