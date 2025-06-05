@@ -2,7 +2,7 @@
 
 import { validateRequest } from "@/auth";
 import db from "@/lib/prisma";
-import { PostDataInclude } from "@/lib/types";
+import { getPostDataInclude } from "@/lib/types";
 import { createPostSchema } from "@/lib/validation";
 
 export const submitPost = async (input: string) => {
@@ -19,7 +19,7 @@ export const submitPost = async (input: string) => {
       content,
       userId: user.id,
     },
-    include: PostDataInclude,
+    include: getPostDataInclude(user.id),
   });
 
   return newPost;
@@ -46,7 +46,7 @@ export const deletePost = async (id: string) => {
 
   const deletedPost = await db.post.delete({
     where: { id },
-    include: PostDataInclude,
+    include: getPostDataInclude(user.id),
   });
 
   return deletedPost;
