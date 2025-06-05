@@ -1,16 +1,19 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import UserAvatar from "@/components/UserAvatar";
 import { useSession } from "@/providers/SessionProvider";
 import Placeholder from "@tiptap/extension-placeholder";
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
-import { submitPost } from "./actions";
-import { Button } from "@/components/ui/button";
+import { Loader2 } from "lucide-react";
+import { useSubmitPostMutation } from "../mutations";
 import "./styles.css";
 
 const PostEditor = () => {
   const { user } = useSession();
+
+  const { mutate, isPending } = useSubmitPostMutation();
 
   const editor = useEditor({
     extensions: [
@@ -30,7 +33,11 @@ const PostEditor = () => {
     }) || "";
 
   const onSubmit = async () => {
-    await submitPost(input);
+    mutate(input, {
+      onSuccess: () => {
+        editor?.commands.clearContent();
+      },
+    });
     editor?.commands.clearContent();
   };
 
@@ -49,7 +56,11 @@ const PostEditor = () => {
           disabled={!input.trim()}
           className="te min-w-20 font-semibold"
         >
-          Post
+          {isPending ? (
+            <Loader2 className="size-4 animate-spin text-white" />
+          ) : (
+            "Post"
+          )}
         </Button>
       </div>
     </div>

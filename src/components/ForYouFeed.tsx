@@ -3,10 +3,10 @@
 import kyInstance from "@/lib/ky";
 import { PostPage } from "@/lib/types";
 import Post from "@/modules/posts/Post";
+import PostsLoadingSkeleton from "@/modules/posts/PostsLoadingSkeleton";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { Loader2 } from "lucide-react";
 import InfiniteScrollContainer from "./InfiniteScrollContainer";
-import PostsLoadingSkeleton from "@/modules/posts/PostsLoadingSkeleton";
 
 const ForYouFeed = () => {
   const {
