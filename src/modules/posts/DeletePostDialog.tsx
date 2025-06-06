@@ -39,6 +39,7 @@ const DeletePostDialog = ({ post, onClose, open }: DeletePostDialogProps) => {
         <DialogFooter>
           <Button
             variant={"destructive"}
+            disabled={mutation.isPending}
             onClick={() => mutation.mutate(post.id, { onSuccess: onClose })}
           >
             {mutation.isPending && (

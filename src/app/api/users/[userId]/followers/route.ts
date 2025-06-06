@@ -4,9 +4,11 @@ import { FollowerInfo } from "@/lib/types";
 
 export const GET = async (
   req: Request,
-  { params: { userId } }: { params: { userId: string } },
+  context: { params: { userId: string } },
 ) => {
   try {
+    const { userId } = await context.params;
+
     const { user: loggedInUser } = await validateRequest();
 
     if (!loggedInUser) {
@@ -50,13 +52,22 @@ export const GET = async (
 
 export const POST = async (
   req: Request,
-  { params: { userId } }: { params: { userId: string } },
+  context: { params: { userId: string } },
 ) => {
   try {
+    const { userId } = await context.params;
+
     const { user: loggedInUser } = await validateRequest();
 
     if (!loggedInUser) {
       return Response.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    if (loggedInUser.id === userId) {
+      return Response.json(
+        { error: "You cannot follow yourself" },
+        { status: 400 },
+      );
     }
 
     await db.follow.upsert({
@@ -70,11 +81,10 @@ export const POST = async (
         followerId: loggedInUser.id,
         followingId: userId,
       },
-
       update: {},
     });
 
-    return new Response();
+    return Response.json({ success: true });
   } catch (error) {
     console.error(error);
     return Response.json({ error: "Internal server error" }, { status: 500 });
@@ -83,9 +93,11 @@ export const POST = async (
 
 export const DELETE = async (
   req: Request,
-  { params: { userId } }: { params: { userId: string } },
+  context: { params: { userId: string } },
 ) => {
   try {
+    const { userId } = await context.params;
+
     const { user: loggedInUser } = await validateRequest();
 
     if (!loggedInUser) {
@@ -99,7 +111,7 @@ export const DELETE = async (
       },
     });
 
-    return new Response();
+    return Response.json({ success: true });
   } catch (error) {
     console.error(error);
     return Response.json({ error: "Internal server error" }, { status: 500 });
