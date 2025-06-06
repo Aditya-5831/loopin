@@ -6,6 +6,7 @@ import { formateRelativeDate } from "@/lib/utils";
 import { useSession } from "@/providers/SessionProvider";
 import Link from "next/link";
 import PostMoreButton from "./PostMoreButton";
+import Linkify from "@/components/Linkify";
 
 interface PostProps {
   post: PostData;
@@ -43,7 +44,9 @@ const Post = ({ post }: PostProps) => {
           />
         )}
       </div>
-      <div className="break-words whitespace-pre-line">{post.content}</div>
+      <Linkify>
+        <div className="break-words whitespace-pre-line">{post.content}</div>
+      </Linkify>
     </div>
   );
 };

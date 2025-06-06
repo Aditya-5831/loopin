@@ -25,6 +25,7 @@ const PostEditor = () => {
         placeholder: "Write something...",
       }),
     ],
+    immediatelyRender: false,
   });
 
   const input =
